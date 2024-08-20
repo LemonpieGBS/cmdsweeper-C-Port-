@@ -1,6 +1,6 @@
 <h1 align="center" id="title">cmdsweeper (C# Port)</h1>
 
-<p align="center"><img src="https://socialify.git.ci/LemonpieGBS/cmdsweeper/image?description=1&amp;descriptionEditable=A%20minesweeper%20clone%20completely%20playable%20on%20CMD%2C%20made%20entirely%20in%20C%2B%2B!&amp;font=Inter&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Diagonal%20Stripes&amp;theme=Light" alt="project-image"></p>
+<p align="center"><img src="https://socialify.git.ci/LemonpieGBS/cmdsweeper/image?description=1&amp;descriptionEditable=A%20minesweeper%20clone%20completely%20playable%20on%20CMD%2C%20made%20entirely%20in%20C%23!&amp;font=Inter&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Diagonal%20Stripes&amp;theme=Light" alt="project-image"></p>
 
 <p id="description">[og description] cmdsweeper is a clone of the popular windows game Minesweeper. With the twist of it being completely playable from your console! Use WASD to move your cursor enter to mine a field and B to flag one! This project is build entirely on C++ and was made as a proof of concept while trying to learn how to program. Hope you enjoy!
 
