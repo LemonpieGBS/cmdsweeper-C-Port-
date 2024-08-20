@@ -93,8 +93,8 @@ namespace cmdsweeper__C__Port_
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("El dato ingresado no se pudo convertir a numero! " +
-                        "Ingrese de nuevo:\n> ");
+                    Console.Write("The input provided cannot be parsed to a number! " +
+                        "Please try again:\n> ");
                     succesful_input = false;
                 }
 
@@ -421,6 +421,9 @@ namespace cmdsweeper__C__Port_
 
             INPUTS move_receiver = INPUTS.DNULL, old_move_receiver;
 
+            int max_width = (int)Math.Floor(Console.BufferWidth / 3.0f),
+                max_height = Console.BufferHeight - 5;
+
             string mode_string_1, mode_string_2, timer_string, version = "1.0.0";
 
             // Set Game Templates
@@ -496,9 +499,10 @@ namespace cmdsweeper__C__Port_
                     Console.Write($" ({templates[i].gm_width}x{templates[i].gm_height}), {templates[i].gm_bomb_amount} mines)\n");
                 }
                 RED.Apply();
-                Console.Write("\n# WARNING: Some game sizes may not be available for your display size, in case graphic glitches arise, make sure to zoom out the console and press F to refresh the display\n");
+                Console.Write("\n# WARNING: To prevent crashes, some game sizes may not be available for your display size, you can try again zooming out and/or activating fullscreen mode in case the expected match was not able to load\n");
                 CYAN.Apply();
-                Console.Write("# TIP: You can zoom out the console with CNTRL + Scroll Wheel\n\n");
+                Console.Write("# TIP: You can zoom out the console with CNTRL + Scroll Wheel\n");
+                Console.Write("# TIP: In case of graphic glitches you can use F to refresh the game screen\n\n");
 
                 COLOR_FF.Reset();
 
@@ -525,7 +529,7 @@ namespace cmdsweeper__C__Port_
             {
 
                 CYAN.Apply();
-                Console.Write("Custom game setup: \n");
+                Console.Write($"Custom game setup: \n");
 
                 // Let's set the dimensions for the game
                 YELLOW.Apply();
@@ -546,9 +550,14 @@ namespace cmdsweeper__C__Port_
                 template_chosen = -1;
 
                 RED.Apply();
-                Console.Write("\n# WARNING: Some game sizes may not be available for your display size, in case graphic glitches arise, make sure to zoom out the console and press F to refresh the display\n");
+                Console.Write("\n# WARNING: To prevent crashes, some game sizes may not be available for your display size, you can try again zooming out and/or activating fullscreen mode in case the expected match was not able to load\n");
                 CYAN.Apply();
-                Console.Write("# TIP: You can zoom out the console with CNTRL + Scroll Wheel\n\n");
+                Console.Write("# TIP: You can zoom out the console with CNTRL + Scroll Wheel\n");
+                Console.Write("# TIP: In case of graphic glitches you can use F to refresh the game screen\n\n");
+                YELLOW.Apply();
+                max_width = (int)Math.Floor(Console.BufferWidth / 3.0f);
+                max_height = Console.BufferHeight - 5;
+                Console.Write($"# INFO: (Maximum game allowed on display size: {max_width}x{max_height})");
 
                 COLOR_FF.Reset();
 
@@ -556,10 +565,33 @@ namespace cmdsweeper__C__Port_
 
             }
 
+            max_width = (int)Math.Floor(Console.BufferWidth / 3.0f);
+            max_height = Console.BufferHeight - 5;
             COLOR_FF.Reset();
             // Let's clamp width and height just in case
             width = (width < 10) ? 10 : width;
             height = (height < 10) ? 10 : height;
+
+            if(template_chosen == -1) {
+                width = (width > max_width) ? max_width : width;
+                height = (height > max_height) ? max_height : height;
+            } else
+            {
+
+                if(width > max_width || height > max_height)
+                {
+                    Console.Clear();
+
+                    CYAN.Apply();
+                    Console.WriteLine($"There was an error loading your match :(");
+                    Console.WriteLine($"Requested Difficulty: {templates[template_chosen].name}");
+                    Console.WriteLine($"Max dimension permitted on current display size: {max_width}x{max_height}");
+                    Console.WriteLine("Try using CNTRL Scroll-Wheel and/or Maximizing the Window for a bigger display size");
+
+                    Console.ReadKey(true);
+                    return;
+                }
+            }
 
             // Let's declare the total area & clamp the bomb amount
             int ttl_area = width * height;
