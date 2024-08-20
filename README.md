@@ -10,8 +10,7 @@ The only notable changes I've been able to see are:
 - To prevent crashes, matches that exceed the console frame can NOT be generated at all, to generate a bigger match you need to zoom out the console beforehand
 - Some difficulties like master may not be available on the default console size</p>
 
-<p align="center"><img src="https://img.shields.io/badge/Author-LemonpieGBS-green" alt="shields"> <img src="https://img.shields.io/badge/Written_In_C%23-purple
-" alt="shields"> <img src="https://img.shields.io/badge/Open_Source-blue" alt="shields"></p>
+<p align="center"><img src="https://img.shields.io/badge/Author-LemonpieGBS-green" alt="shields"> <img src="https://img.shields.io/badge/Written_In_C%23-purple" alt="shields"> <img src="https://img.shields.io/badge/Open_Source-blue" alt="shields"></p>
 
 <h2>Project Screenshots:</h2>
 
